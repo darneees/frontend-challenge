@@ -95,20 +95,8 @@ Verifica e corrige problemas de lint no código.
 5. Monitoramento e Logging:
 - Integrar ferramentas como Sentry para rastreamento de erros e monitoramento de desempenho.
 
+---
 
+### Projeto
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+![tela incial](https://github.com/user-attachments/assets/1cd73cb7-a08c-4bee-bab4-f794a04227b2)

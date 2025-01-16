@@ -2,7 +2,11 @@
 
 import Card from './components/Card';
 
-export default function Page({ addToCart }: { addToCart: (item: any) => void }) {
+export default function Page() {
+  const addToCart = (item: any): void => {
+    console.log('Adicionado ao carrinho:', item);
+  };
+
   const cards = [
     {
       id: 1,
@@ -13,7 +17,7 @@ export default function Page({ addToCart }: { addToCart: (item: any) => void }) 
     },
     {
       id: 2,
-      name: 'Boots of Ppeed',
+      name: 'Boots of Speed',
       description: 'Botas feitas de couro fino e tecido élfico...',
       image: 'https://softstar.s3.amazonaws.com/items/boots-of-speed.png',
       price: 338,

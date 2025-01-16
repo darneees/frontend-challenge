@@ -15,6 +15,23 @@ Certifique-se de ter as seguintes ferramentas instaladas:
 
 ---
 
+### Tecnologias Utilizadas
+
+- Next.js: Framework para renderização do lado do servidor e criação de aplicações React.
+- Tailwind CSS: Biblioteca para estilização rápida e responsiva.
+- Shadcn UI: Fornece componentes estilizados que combinam a acessibilidade do Radix UI com personalização via Tailwind CSS.
+- Axios: Para gerenciamento de requisições HTTP.
+
+---
+
+### Justificativas
+
+- Next.js: Escolhido por sua eficiência em renderização SSR (Server-Side Rendering) e SSG (Static Site Generation), ideal para projetos modernos e de alta performance.
+- Tailwind CSS: Proporciona agilidade na criação de layouts sem sair do HTML.
+- Shadcn UI: Utiliza os componentes acessíveis do Radix UI com estilização personalizada para integração mais simples ao Tailwind CSS.
+
+---
+
 ### Passos para Configuração
 
 1. **Clone o repositório**:
@@ -61,34 +78,7 @@ Inicia a aplicação usando o build de produção.
 npm run lint
 ```
 Verifica e corrige problemas de lint no código.
-
----
-
-### Funcionalidades Implementadas
-
-- Interface de Usuário Responsiva: Criada com Tailwind CSS.
-- Diálogos Modais: Utilizando Radix UI.
-- Animações Avançadas: Com suporte de tailwindcss-animate.
-- Gerenciamento de Estado e Requisições HTTP: Implementado com Axios e React.
-- Componentização Reutilizável: Feita com clsx e class-variance-authority.
-- 
----
-
-### Tecnologias Utilizadas
-
-- Next.js: Framework para renderização do lado do servidor e criação de aplicações React.
-- Tailwind CSS: Biblioteca para estilização rápida e responsiva.
-- Radix UI: Componentes acessíveis e altamente configuráveis.
-- Axios: Para gerenciamento de requisições HTTP.
-
----
-
-### Justificativas
-
-- Next.js: Escolhido por sua eficiência em renderização SSR (Server-Side Rendering) e SSG (Static Site Generation), ideal para projetos modernos e de alta performance.
-- Tailwind CSS: Proporciona agilidade na criação de layouts sem sair do HTML.
-- Radix UI: Oferece acessibilidade pronta para uso, reduzindo o esforço para implementar interfaces amigáveis.
-
+  
 ---
 
 ### Melhorias Futuras

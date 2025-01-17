@@ -20,7 +20,7 @@ const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactElement<{ addToCart: (item: any) => void }>; // Define a tipagem personalizada
+  children: React.ReactElement;
 }) {
   const [cart, setCart] = useState([]);
 
@@ -57,72 +57,76 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} bg-zinc-900 text-white`}>
-        <header className="container flex justify-between p-4">
-          <div className="text-xl font-bold">
+        <header className="container flex items-center justify-between h-10vh px-5">
+          <article className="text-xl font-bold">
             <Image
               src="/assets/img/starsoft.png"
               width={90}
               height={90}
               alt="Starsoft Logo"
             />
-          </div>
+          </article>
           <Sheet>
             <SheetTrigger asChild>
-              <Button className="bg-orange-500 hover:bg-orange-600">
-                Mochila de Compras
+              <Button>
+                <img src="./assets/img/Bag.png" alt="bag" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-96 bg-zinc-900">
+            <SheetContent side="right" className="border-none flex flex-col justify-end align-middle w-96 h-full bg-zinc-900">
               <SheetHeader>
                 <div className="flex items-center justify-between">
-                  <SheetTitle className="text-2xl font-bold">
+                  <SheetTitle className="absolute top-6 w-full text-2xl font-normal text-white">
                     Mochila de Compras
                   </SheetTitle>
                 </div>
               </SheetHeader>
-              <div className="p-4 space-y-4">
+              <section className="p-4 space-y-4">
                 <ul className="space-y-4">
-                  {cart.map((item) => (
-                    <li
-                      key={item.name}
-                      className="flex items-center bg-gray-800 p-4 rounded-lg"
-                    >
-                      <Image
-                        src={item.image}
-                        alt={item.name}
-                        width={60}
-                        height={60}
-                        className="rounded mr-4"
-                      />
-                      <div className="flex-1">
-                        <h3 className="font-bold text-lg">{item.name}</h3>
-                        <p className="text-orange-500 font-bold">
-                          {item.price.toFixed(2)} ETH
-                        </p>
-                        <div className="flex items-center gap-2 mt-2">
-                          <button
-                            className="bg-gray-700 text-white px-3 py-1 rounded"
-                            onClick={() => updateQuantity(item.name, -1)}
-                          >
-                            -
-                          </button>
-                          <span className="text-white">{item.quantity}</span>
-                          <button
-                            className="bg-gray-700 text-white px-3 py-1 rounded"
-                            onClick={() => updateQuantity(item.name, 1)}
-                          >
-                            +
-                          </button>
-                        </div>
-                      </div>
-                      <button
-                        className="bg-red-500 text-white p-2 rounded-full ml-4"
-                        onClick={() => removeFromCart(item.name)}
+                  {cart.length === 0 ? (
+                    <p>O carrinho está vazio</p>
+                  ) : (
+                    cart.map((item) => (
+                      <li
+                        key={item.name}
+                        className="flex items-center bg-gray-800 p-4 rounded-lg"
                       >
-                        🗑️
-                      </button>
-                    </li>
-                  ))}
+                        <Image
+                          src={item.image}
+                          alt={item.name}
+                          width={60}
+                          height={60}
+                          className="rounded mr-4"
+                        />
+                        <article className="flex-1">
+                          <h3 className="font-bold text-lg">{item.name}</h3>
+                          <p className="text-orange-500 font-bold">
+                            {item.price.toFixed(2)} ETH
+                          </p>
+                          <div className="flex items-center gap-2 mt-2">
+                            <button
+                              className="bg-gray-700 text-white px-3 py-1 rounded"
+                              onClick={() => updateQuantity(item.name, -1)}
+                            >
+                              -
+                            </button>
+                            <span className="text-white">{item.quantity}</span>
+                            <button
+                              className="bg-gray-700 text-white px-3 py-1 rounded"
+                              onClick={() => updateQuantity(item.name, 1)}
+                            >
+                              +
+                            </button>
+                          </div>
+                        </article>
+                        <button
+                          className="bg-red-500 text-white p-2 rounded-full ml-4"
+                          onClick={() => removeFromCart(item.name)}
+                        >
+                          🗑️
+                        </button>
+                      </li>
+                    ))
+                  )}
                 </ul>
                 <div className="flex justify-between items-center mt-4">
                   <span className="text-lg font-bold">TOTAL:</span>
@@ -136,7 +140,7 @@ export default function RootLayout({
                     ETH
                   </span>
                 </div>
-              </div>
+              </section>
               <SheetFooter>
                 <Button className="bg-orange-500 hover:bg-orange-600 w-full py-3 rounded">
                   FINALIZAR COMPRA
@@ -145,9 +149,8 @@ export default function RootLayout({
             </SheetContent>
           </Sheet>
         </header>
-        {React.cloneElement(children, {
-          addToCart, // Passa a função ao componente filho
-        })}
+
+        {React.cloneElement(children, { addToCart })}
       </body>
     </html>
   );

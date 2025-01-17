@@ -17,7 +17,11 @@ export default {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
-  		}
+  		},
+		height: {
+			'90vh': '90vh',
+			'10vh': '10vh',
+		},
   	}
   },
   plugins: [require("tailwindcss-animate")],

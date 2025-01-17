@@ -2,11 +2,8 @@
 
 import Card from './components/Card';
 
-export default function Page() {
-  const addToCart = (item: any): void => {
-    console.log('Adicionado ao carrinho:', item);
-  };
-
+export default function Page({ addToCart }) {
+  
   const cards = [
     {
       id: 1,
@@ -39,7 +36,7 @@ export default function Page() {
   ];
 
   return (
-    <div className="relative flex items-center justify-center h-auto w-full flex-row gap-5 flex-wrap">
+    <div className="relative flex items-center justify-center w-full flex-row gap-5 flex-wrap h-90vh">
       {cards.map((card) => (
         <Card
           key={card.id}
@@ -47,14 +44,7 @@ export default function Page() {
           description={card.description}
           image={card.image}
           price={card.price}
-          onAddToCart={() =>
-            addToCart({
-              name: card.name,
-              description: card.description,
-              image: card.image,
-              price: card.price,
-            })
-          }
+          onAddToCart={() => addToCart(card)}
         />
       ))}
     </div>

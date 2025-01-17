@@ -1,9 +1,14 @@
 'use client';
 
 import Card from './components/Card';
+import React from 'react';
 
-export default function Page({ addToCart }) {
-  
+interface PageProps {
+  addToCart: (item: any) => void;
+}
+
+export default function Page({ addToCart }: PageProps) {
+
   const cards = [
     {
       id: 1,

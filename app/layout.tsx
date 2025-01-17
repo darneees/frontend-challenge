@@ -1,4 +1,4 @@
-"use client";
+"use client"; 
 
 import React from "react";
 import { Inter } from "next/font/google";
@@ -20,7 +20,7 @@ const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactElement;
+  children: React.ReactElement<{ addToCart: (item: any) => void }>; // Define a tipagem personalizada
 }) {
   const [cart, setCart] = useState([]);
 
@@ -82,51 +82,47 @@ export default function RootLayout({
               </SheetHeader>
               <section className="p-4 space-y-4">
                 <ul className="space-y-4">
-                  {cart.length === 0 ? (
-                    <p>O carrinho está vazio</p>
-                  ) : (
-                    cart.map((item) => (
-                      <li
-                        key={item.name}
-                        className="flex items-center bg-gray-800 p-4 rounded-lg"
+                  {cart.map((item) => (
+                    <li
+                      key={item.name}
+                      className="flex items-center bg-gray-800 p-4 rounded-lg"
+                    >
+                      <Image
+                        src={item.image}
+                        alt={item.name}
+                        width={60}
+                        height={60}
+                        className="rounded mr-4"
+                      />
+                      <article className="flex-1">
+                        <h3 className="font-bold text-lg">{item.name}</h3>
+                        <p className="text-orange-500 font-bold">
+                          {item.price.toFixed(2)} ETH
+                        </p>
+                        <div className="flex items-center gap-2 mt-2">
+                          <button
+                            className="bg-gray-700 text-white px-3 py-1 rounded"
+                            onClick={() => updateQuantity(item.name, -1)}
+                          >
+                            -
+                          </button>
+                          <span className="text-white">{item.quantity}</span>
+                          <button
+                            className="bg-gray-700 text-white px-3 py-1 rounded"
+                            onClick={() => updateQuantity(item.name, 1)}
+                          >
+                            +
+                          </button>
+                        </div>
+                      </article>
+                      <button
+                        className="bg-red-500 text-white p-2 rounded-full ml-4"
+                        onClick={() => removeFromCart(item.name)}
                       >
-                        <Image
-                          src={item.image}
-                          alt={item.name}
-                          width={60}
-                          height={60}
-                          className="rounded mr-4"
-                        />
-                        <article className="flex-1">
-                          <h3 className="font-bold text-lg">{item.name}</h3>
-                          <p className="text-orange-500 font-bold">
-                            {item.price.toFixed(2)} ETH
-                          </p>
-                          <div className="flex items-center gap-2 mt-2">
-                            <button
-                              className="bg-gray-700 text-white px-3 py-1 rounded"
-                              onClick={() => updateQuantity(item.name, -1)}
-                            >
-                              -
-                            </button>
-                            <span className="text-white">{item.quantity}</span>
-                            <button
-                              className="bg-gray-700 text-white px-3 py-1 rounded"
-                              onClick={() => updateQuantity(item.name, 1)}
-                            >
-                              +
-                            </button>
-                          </div>
-                        </article>
-                        <button
-                          className="bg-red-500 text-white p-2 rounded-full ml-4"
-                          onClick={() => removeFromCart(item.name)}
-                        >
-                          🗑️
-                        </button>
-                      </li>
-                    ))
-                  )}
+                        🗑️
+                      </button>
+                    </li>
+                  ))}
                 </ul>
                 <div className="flex justify-between items-center mt-4">
                   <span className="text-lg font-bold">TOTAL:</span>
@@ -150,7 +146,9 @@ export default function RootLayout({
           </Sheet>
         </header>
 
-        {React.cloneElement(children, { addToCart })}
+        {React.cloneElement(children, {
+          addToCart,
+        })}
       </body>
     </html>
   );
